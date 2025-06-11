@@ -1,13 +1,10 @@
 package org.example;
 
-import java.util.Random;
-import java.util.Scanner;
-
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-
+        // if else statement
         int number = -1;
         if (number > 0) {
             System.out.println( number + " is positive.");
@@ -20,6 +17,7 @@ public class Main {
         int day = 3;
         String dayName;
 
+        // switch case statement
         switch (day){
             case 1: dayName = "Monday"; break;
             case 2: dayName = "Tuesday"; break;
@@ -31,6 +29,20 @@ public class Main {
             default: dayName = "Invalid day"; break;
         }
         System.out.println(dayName);
+
+        // while loop
+        int i = 2;
+        while (i <= 10) {
+            System.out.println("Hello World - " + i);
+            i += 2;
+        }
+
+        //do while loop
+        int j = 1;
+        do {
+            System.out.println("Peserta - " + j);
+            j += 2;
+        } while (j <= 10);
     }
 }
 
