@@ -1,0 +1,39 @@
+### 🔸 **A. Pilihan Ganda (5 Soal)**
+
+1. (B) Mengelola logika aplikasi dan komunikasi data dengan database
+2. (A) Menyembunyikan detail implementasi dan menyediakan akses lewat method
+3. (C) Meng-inject dependency otomatis ke dalam bean
+4. (A) Agar controller lebih ringan dan fokus pada request/response
+5. (C) `@GetMapping("/api")`
+
+### 🔸 **B. True / False (5 Soal)**
+
+6. Dalam arsitektur backend, service biasanya dipanggil langsung dari frontend. **(False)**
+7. Constructor Injection adalah cara yang direkomendasikan untuk dependency injection di Spring. **(True)**
+8. `@Service` digunakan untuk menandai sebuah class sebagai penyedia logika bisnis. **(True)**
+9. Semua logika bisa ditaruh dalam controller agar tidak perlu membuat banyak file. **(False)**
+10. Spring Boot memerlukan `main()` method untuk menjalankan aplikasinya. **(True)**
+
+### 🔸 **C. Jawaban Singkat Penjelasan (10 Soal)**
+
+11. Backend adalah bagian aplikasi yang menangani logika bisnis, pengolahan data, dan komunikasi dengan database. Perannya adalah memastikan data diproses dan dikirim ke frontend sesuai kebutuhan.
+
+12. Class adalah blueprint atau template, sedangkan object adalah instance nyata dari class tersebut.
+
+13. Dua prinsip OOP lainnya:
+ - Inheritance: Pewarisan sifat dan method dari class induk (superclass) ke class anak ().
+ - Polymorphism: Kemampuan objek untuk memiliki banyak bentuk, misal method yang sama bisa memiliki implementasi berbeda.
+
+14. @RestController digunakan agar Spring mengenali class sebagai controller REST dan otomatis mengembalikan data dalam format JSON atau XML.
+
+15. Spring Boot memudahkan setup, menyediakan banyak konfigurasi otomatis, dan mempercepat pengembangan aplikasi tanpa harus membuat server dari nol.
+
+16. Dependency injection di Spring Boot bekerja dengan mengelola objek (bean) secara otomatis dan menyuntikkannya ke class yang membutuhkan, misal lewat constructor.
+
+17. Memisahkan controller dan service membuat kode lebih terstruktur, mudah diuji, dan dipelihara.
+
+18. Jika tidak menambahkan @Service, Spring tidak akan mengenali class tersebut sebagai bean, sehingga tidak bisa di-inject ke komponen lain.
+
+19. @RequestParam digunakan untuk mengambil parameter dari query string pada request HTTP, biasanya pada endpoint GET.
+
+20. Dengan membuat constructor di controller yang menerima parameter bertipe service, lalu Spring akan meng-inject service tersebut secara otomatis. 
