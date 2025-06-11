@@ -1,4 +1,4 @@
-### 🔸 **A. Pilihan Ganda (5 Soal)**
+## 🔸 **A. Pilihan Ganda (5 Soal)**
 
 1. (B) Mengelola logika aplikasi dan komunikasi data dengan database
 2. (A) Menyembunyikan detail implementasi dan menyediakan akses lewat method
@@ -6,7 +6,7 @@
 4. (A) Agar controller lebih ringan dan fokus pada request/response
 5. (C) `@GetMapping("/api")`
 
-### 🔸 **B. True / False (5 Soal)**
+## 🔸 **B. True / False (5 Soal)**
 
 6. Dalam arsitektur backend, service biasanya dipanggil langsung dari frontend. **(False)**
 7. Constructor Injection adalah cara yang direkomendasikan untuk dependency injection di Spring. **(True)**
@@ -14,7 +14,7 @@
 9. Semua logika bisa ditaruh dalam controller agar tidak perlu membuat banyak file. **(False)**
 10. Spring Boot memerlukan `main()` method untuk menjalankan aplikasinya. **(True)**
 
-### 🔸 **C. Jawaban Singkat Penjelasan (10 Soal)**
+## 🔸 **C. Jawaban Singkat Penjelasan (10 Soal)**
 
 11. Backend adalah bagian aplikasi yang menangani logika bisnis, pengolahan data, dan komunikasi dengan database. Perannya adalah memastikan data diproses dan dikirim ke frontend sesuai kebutuhan.
 
@@ -37,3 +37,125 @@
 19. @RequestParam digunakan untuk mengambil parameter dari query string pada request HTTP, biasanya pada endpoint GET.
 
 20. Dengan membuat constructor di controller yang menerima parameter bertipe service, lalu Spring akan meng-inject service tersebut secara otomatis. 
+
+## 🔸 **D. Koreksi Kode (5 Soal)**
+
+### 21.
+**Before**
+```java
+@RestController
+public class HelloController {
+    @GetMapping("/hello")
+    public String hello() {
+        return helloService.sayHello(); // error
+    }
+}
+```
+**Kesalahan:**
+- `helloService` tidak dideklarasikan dan tidak di-inject.
+
+**After**
+```java
+@RestController
+public class HelloController {
+    private final HelloService helloService;
+
+    public HelloController(HelloService helloService) {
+        this.helloService = helloService;
+    }
+
+    @GetMapping("/hello")
+    public String hello() {
+        return helloService.sayHello();
+    }
+}
+```
+
+### 22.
+**Before**
+```java
+public class Person {
+    public String name;
+
+    public void Person(String name) {
+        this.name = name;
+    }
+}
+```
+**Kesalahan:**
+- Constructor tidak dideklarasikan dengan benar (seharusnya tanpa tipe return).
+
+**After**
+```java
+public class Person {
+    public String name;
+
+    public Person(String name) {
+        this.name = name;
+    }
+}
+```
+
+### 23.
+**Before**
+```java
+@RestController
+public class GreetController {
+    @PostMapping("/greet")
+    public String greet(@RequestBody name) {
+        return "Hello, " + name;
+    }
+}
+```
+**Kesalahan:**
+- `@RequestBody` harus menerima tipe data yang sesuai, misal `String` atau objek.
+
+**After**
+```java
+@RestController
+public class GreetController {
+    @PostMapping("/greet")
+    public String greet(@RequestBody String name) {
+        return "Hello, " + name;
+    }
+}
+```
+
+### 24.
+**Before**
+
+```java
+@Service
+public class InfoService {
+    public String getInfo() {
+        return "Info OK";
+    }
+}
+
+// controller
+@RestController
+public class InfoController {
+    @GetMapping("/info")
+    public String get() {
+        InfoService info = new InfoService(); // langsung di-new
+        return info.getInfo();
+    }
+}
+```
+**Kesalahan:**
+- Service diinisialisasi manual, seharusnya di-inject oleh Spring
+
+**After**
+```java
+```
+### 25.
+
+```java
+@RestController
+public class MathController {
+    @GetMapping("/add")
+    public int addNumbers(int a, int b) {
+        return a + b;
+    }
+}
+```
