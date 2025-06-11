@@ -23,7 +23,6 @@
 13. Dua prinsip OOP lainnya:
  - Inheritance: Pewarisan sifat dan method dari class induk (superclass) ke class anak ().
  - Polymorphism: Kemampuan objek untuk memiliki banyak bentuk, misal method yang sama bisa memiliki implementasi berbeda.
-
 14. @RestController digunakan agar Spring mengenali class sebagai controller REST dan otomatis mengembalikan data dalam format JSON atau XML.
 
 15. Spring Boot memudahkan setup, menyediakan banyak konfigurasi otomatis, dan mempercepat pengembangan aplikasi tanpa harus membuat server dari nol.
@@ -147,14 +146,47 @@ public class InfoController {
 
 **After**
 ```java
+@Service
+public class InfoService {
+    public String getInfo() {
+        return "Info OK";
+    }
+}
+
+@RestController
+public class InfoController {
+    private final InfoService infoService;
+
+    public InfoController(InfoService infoService) {
+        this.infoService = infoService;
+    }
+
+    @GetMapping("/info")
+    public String get() {
+        return infoService.getInfo();
+    }
+}
 ```
 ### 25.
-
+**Before**
 ```java
 @RestController
 public class MathController {
     @GetMapping("/add")
     public int addNumbers(int a, int b) {
+        return a + b;
+    }
+}
+```
+**Kesalahan:**
+- Parameter `a` dan `b` tidak didefinisikan dengan benar untuk diambil dari query string.
+
+**after**
+```java
+@RestController
+public class MathController {
+    @GetMapping("/add")
+    public int addNumbers(@RequestParam int a, @RequestParam int b) {
         return a + b;
     }
 }
