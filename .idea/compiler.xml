@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="helloWorld" />
+        <module name="polymorphism" />
         <module name="controlFlow" />
       </profile>
     </annotationProcessing>
