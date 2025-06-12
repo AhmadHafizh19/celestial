@@ -117,6 +117,16 @@ psql -h localhost -U admin -d company_db
 
 ---
 
+**Answer:**
+
+```sql
+SELECT d.name AS department_name, SUM(e.salary) AS total_salary
+FROM departments d
+JOIN employees e ON d.id = e.department_id
+group BY d.name
+order BY total_salary DESC;
+```
+
 ### ❓ Soal 2: Karyawan yang Tidak Pernah Join Proyek
 
 > Tampilkan nama-nama karyawan yang tidak pernah bergabung dalam proyek manapun.
@@ -129,6 +139,15 @@ psql -h localhost -U admin -d company_db
 | Grace |
 
 ---
+
+**Answer:**
+
+```sql
+SELECT e.name
+FROM employees e
+LEFT JOIN employee_projects ep ON e.id = ep.employee_id
+WHERE ep.employee_id IS NULL;
+```
 
 ### ❓ Soal 3: Tiga Gaji Tertinggi Tiap Departemen
 
@@ -148,10 +167,15 @@ psql -h localhost -U admin -d company_db
 
 ---
 
+**Answer:**
+
+```sql
+???
+```
+
 ### ❓ Soal 4: Proyek yang Durasi-nya Lebih Lama dari Lama Kerja Rata-Rata Karyawan
 
 > Hitung rata-rata masa kerja semua karyawan, lalu tampilkan proyek yang memiliki durasi (end_date - start_date) lebih lama dari itu.
-
 🟩 **Ekspektasi Output (per 2025-06-12):**
 
 | name       |
@@ -159,6 +183,15 @@ psql -h localhost -U admin -d company_db
 | _(kosong)_ |
 
 ---
+**Answer:**
+
+```sql
+SELECT p.name
+FROM projects p
+WHERE (p.end_date - p.start_date) > (
+  SELECT AVG(CURRENT_DATE - hire_date) FROM employees
+);
+```
 
 ### ❓ Soal 5: Karyawan yang Pernah Join Lebih dari 2 Proyek
 
@@ -174,5 +207,15 @@ psql -h localhost -U admin -d company_db
 > Catatan: Data saat ini belum ada yang join > 2 proyek, jadi jawaban tetap 2 sebagai validasi agregasi.
 
 ---
+**Answer:**
+
+```sql
+SELECT e.name, COUNT(DISTINCT ep.project_id) AS total_projects
+FROM employees e
+JOIN employee_projects ep ON e.id = ep.employee_id
+GROUP BY e.id, e.name
+HAVING COUNT(DISTINCT ep.project_id) >= 2
+ORDER BY total_projects DESC;
+```
 
 Kalau kamu mau tambahkan soal lebih sulit seperti recursive CTE, JSON parsing, atau ARRAY, tinggal bilang ya.
