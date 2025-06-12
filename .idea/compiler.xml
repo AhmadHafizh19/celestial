@@ -6,10 +6,22 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="helloWorld" />
         <module name="polymorphism" />
+        <module name="helloWorld" />
+        <module name="demo-spring" />
+        <module name="books-API" />
         <module name="controlFlow" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="books-API (1)" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="books-API" options="-parameters" />
+      <module name="books-API (1)" options="-parameters" />
+      <module name="demo-spring" options="-parameters" />
+    </option>
   </component>
 </project>
