@@ -1,5 +1,3 @@
-
-
 ## 🧪 **Pre-Test: Spring Data JPA & Spring Web Development**
 
 ---
@@ -144,4 +142,3 @@ public String getUser(@PathVariable Long id) {
 25. Jika Anda ingin menghandle error saat user tidak ditemukan dalam REST API, bagaimana pendekatan yang baik di Spring?
 
 ---
-
